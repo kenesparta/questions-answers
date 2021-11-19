@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  qas:
+    build:
+      context: './pkg'
+      dockerfile: Dockerfile
+    image: qas_image
+    container_name: qas
+    env_file: .env
+    restart: "no"
+    ports:
+      - "${API_PORT}:${API_PORT}"
+    networks:
+      qas:
+
+  qas_pgsql:
+    image: postgres:14-alpine
+    container_name: qas_pgsql
+    volumes:
+      - qas_data:/var/lib/postgresql/data
+    env_file: .env
+    ports:
+      - "5432:5432"
+    restart: "no"
+    networks:
+      qas:
+
+volumes:
+  qas_data:
+
+networks:
+  qas:
