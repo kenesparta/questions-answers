@@ -11,6 +11,7 @@ RUN apk add gcc musl-dev && \
     go build .
 
 
+# Building to finish docker container
 FROM alpine:3.14
 
 COPY --from=go_builder /qaService/questionsAnswers .
