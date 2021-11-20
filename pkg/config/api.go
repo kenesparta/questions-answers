@@ -1,4 +1,4 @@
-package env
+package config
 
 import (
 	"log"
@@ -7,6 +7,7 @@ import (
 
 type Api struct {
 	Port string
+	General
 }
 
 func (a *Api) Set() {

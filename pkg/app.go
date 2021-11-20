@@ -5,28 +5,33 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
-	dbc "questionsAnswers/db"
-	"questionsAnswers/env"
+	"questionsAnswers/config"
+	"questionsAnswers/shared/route"
+	"questionsAnswers/shared/storage"
 )
 
 type app struct {
-	apiConfig env.Api
-	dbConfig  env.Database
+	apiConfig config.Api
+	dbConfig  config.Database
 	router    *mux.Router
 }
 
-func (a *app) Initialize() {
+func (a *app) initPostgres() {
+	pg, err := storage.NewPostgresRepository(&a.dbConfig)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	route.InitPostgresRoutes(pg, a.router)
+}
+
+func (a *app) initialize() {
 	a.apiConfig.Set()
 	a.dbConfig.Set()
 	a.router = mux.NewRouter()
-	pg, err := dbc.Postgres(&a.dbConfig)
-	if err != nil {
-		return
-	}
-	fmt.Println(pg)
+	a.initPostgres()
 }
 
-func (a *app) Run() {
+func (a *app) run() {
 	if err := http.ListenAndServe(
 		fmt.Sprintf(":%s", a.apiConfig.Port),
 		a.router); err != nil {

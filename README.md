@@ -1,4 +1,4 @@
-# Question Answer service
+# Question Answer Service
 
 REST Service for questions and answers
 
@@ -14,10 +14,10 @@ REST Service for questions and answers
 
 # 2. Environment file (.env)
 
-1. Copy the .env-example file to .env file:
+1. Copy the `.env-example` file to `.env` file:
 
 ```shell
-cp .env-example .env
+cp .config-example .config
 ```
 
 2. Fill out the variables with your own credentials

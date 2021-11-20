@@ -1,4 +1,4 @@
-package env
+package config
 
 import (
 	"log"
@@ -11,6 +11,7 @@ type Database struct {
 	Password string
 	Driver   string
 	Host     string
+	General
 }
 
 func (d *Database) Set() {
