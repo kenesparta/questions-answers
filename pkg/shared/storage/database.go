@@ -3,10 +3,10 @@ package storage
 import (
 	"database/sql"
 	"fmt"
+	"github.com/kenesparta/questions-answers/config"
+	pgQuestion "github.com/kenesparta/questions-answers/question/infra"
 	_ "github.com/lib/pq"
 	"log"
-	"questionsAnswers/config"
-	pgQuestion "questionsAnswers/question/infra"
 )
 
 type PostgresRepository struct {

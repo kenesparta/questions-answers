@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/kenesparta/questions-answers/config"
+	"github.com/kenesparta/questions-answers/shared/route"
+	"github.com/kenesparta/questions-answers/shared/storage"
 	"log"
 	"net/http"
-	"questionsAnswers/config"
-	"questionsAnswers/shared/route"
-	"questionsAnswers/shared/storage"
 )
 
 type app struct {

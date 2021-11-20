@@ -8,12 +8,12 @@ RUN apk add gcc musl-dev && \
     go mod tidy && \
     go get -d -u && \
     go test -v ./... -cover && \
-    go build .
+    go build -o qas
 
 
 # Building to finish docker container
 FROM alpine:3.14
 
-COPY --from=go_builder /qaService/questionsAnswers .
+COPY --from=go_builder /qaService/qas .
 
-ENTRYPOINT [ "./questionsAnswers" ]
+ENTRYPOINT [ "./qas" ]

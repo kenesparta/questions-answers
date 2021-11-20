@@ -1,4 +1,4 @@
-module questionsAnswers
+module github.com/kenesparta/questions-answers
 
 go 1.17
 
