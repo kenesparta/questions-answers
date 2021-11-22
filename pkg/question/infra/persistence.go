@@ -75,13 +75,13 @@ func (qp *QuestionPersistence) GetByUser(userId string) ([]domain.Question, erro
 func (qp *QuestionPersistence) Save(q domain.Question) error {
 	var (
 		idCreated string
-		err = qp.db.
-		QueryRow(
-			fmt.Sprintf("INSERT INTO %s VALUES (DEFAULT, $1, $2) RETURNING id", qp.tableName),
-			q.Content,
-			q.UserId,
-		).
-		Scan(&idCreated)
+		err       = qp.db.
+				QueryRow(
+				fmt.Sprintf("INSERT INTO %s VALUES (DEFAULT, $1, $2) RETURNING id", qp.tableName),
+				q.Content,
+				q.UserId,
+			).
+			Scan(&idCreated)
 	)
 	if err != nil {
 		log.Print(err)
@@ -91,12 +91,15 @@ func (qp *QuestionPersistence) Save(q domain.Question) error {
 }
 
 func (qp *QuestionPersistence) Update(q domain.Question) error {
-	err := qp.db.
-		QueryRow(fmt.Sprintf("UPDATE %s SET content=$1 WHERE id=$1", qp.tableName),
-			q.Id,
-			q.Content,
-		).
-		Scan()
+	var (
+		idUpdated string
+		err       = qp.db.
+				QueryRow(fmt.Sprintf("UPDATE %s SET content=$1 WHERE id=$2 RETURNING id", qp.tableName),
+				q.Content,
+				q.Id,
+			).
+			Scan(&idUpdated)
+	)
 	if err != nil {
 		log.Print(err)
 		return err
@@ -105,15 +108,18 @@ func (qp *QuestionPersistence) Update(q domain.Question) error {
 }
 
 func (qp *QuestionPersistence) Delete(id string) error {
-	err := qp.db.QueryRow(fmt.Sprintf("DELETE FROM %s WHERE id=$1", qp.tableName), id).Scan()
+	var (
+		idDeleted string
+		err       = qp.db.
+				QueryRow(fmt.Sprintf("DELETE FROM %s WHERE id=$1 RETURNING id", qp.tableName), id).
+				Scan(&idDeleted)
+	)
 	if err != nil {
 		log.Print(err)
 		return err
 	}
 	return nil
 }
-
-
 
 func NewQuestionPersistence(tableName string, db *sql.DB) *QuestionPersistence {
 	return &QuestionPersistence{

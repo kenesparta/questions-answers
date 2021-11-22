@@ -17,6 +17,10 @@ func NewQuestionHandler(s *storage.PostgresRepository, r *mux.Router) {
 		"userId", "{userId}",
 	).Methods(http.MethodGet)
 
+	r.HandleFunc("/question", q.Delete).Queries(
+		"id", "{id}",
+	).Methods(http.MethodDelete)
+
 	r.HandleFunc("/question", q.GetAll).Methods(http.MethodGet)
 
 	r.HandleFunc("/question", q.Save).Methods(http.MethodPost)

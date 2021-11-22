@@ -10,7 +10,7 @@ REST Service for questions and answers
 
 - `pkg`: Here is the main source code.
 - `sql`: Here are all the SQL files to create the tables, data insertions and methods (it is not necessary run these files manually).
-- `postman`: Here is the Postman `json` file to import to your local JSON.
+- `postman`: Here is a `json` file to import to your local Postman.
 
 # 1. Requirements
 
