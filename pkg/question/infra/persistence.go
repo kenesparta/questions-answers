@@ -31,14 +31,14 @@ func (qp *QuestionPersistence) GetAll() ([]domain.Question, error) {
 	var (
 		q         domain.Question
 		questions []domain.Question
-		rows, err = qp.db.Query(fmt.Sprintf("SELECT id, content FROM %s", qp.tableName))
+		rows, err = qp.db.Query(fmt.Sprintf("SELECT * FROM %s", qp.tableName))
 	)
 	if err != nil {
 		log.Print(err)
 		return nil, err
 	}
 	for rows.Next() {
-		err = rows.Scan(&q.Id, &q.Content)
+		err = rows.Scan(&q.Id, &q.Content, &q.UserId)
 		if err != nil {
 			log.Print(err)
 			return nil, err

@@ -40,3 +40,19 @@ func (q *Question) Get(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+func (q *Question) GetAll(w http.ResponseWriter, _ *http.Request) {
+	infra.Headers(w)
+	questions, err := q.app.GetAll()
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(&questions); err != nil {
+		log.Print(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+}
+
