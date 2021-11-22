@@ -73,22 +73,16 @@ func (qp *QuestionPersistence) GetByUser(userId string) ([]domain.Question, erro
 }
 
 func (qp *QuestionPersistence) Save(q domain.Question) error {
-	err := qp.db.
+	var (
+		idCreated string
+		err = qp.db.
 		QueryRow(
-			fmt.Sprintf("INSERT INTO %s VALUES (DEFAULT, $1, $2)", qp.tableName),
+			fmt.Sprintf("INSERT INTO %s VALUES (DEFAULT, $1, $2) RETURNING id", qp.tableName),
 			q.Content,
 			q.UserId,
 		).
-		Scan()
-	if err != nil {
-		log.Print(err)
-		return err
-	}
-	return nil
-}
-
-func (qp *QuestionPersistence) Delete(id string) error {
-	err := qp.db.QueryRow(fmt.Sprintf("DELETE FROM %s WHERE id=$1", qp.tableName), id).Scan()
+		Scan(&idCreated)
+	)
 	if err != nil {
 		log.Print(err)
 		return err
@@ -109,6 +103,17 @@ func (qp *QuestionPersistence) Update(q domain.Question) error {
 	}
 	return nil
 }
+
+func (qp *QuestionPersistence) Delete(id string) error {
+	err := qp.db.QueryRow(fmt.Sprintf("DELETE FROM %s WHERE id=$1", qp.tableName), id).Scan()
+	if err != nil {
+		log.Print(err)
+		return err
+	}
+	return nil
+}
+
+
 
 func NewQuestionPersistence(tableName string, db *sql.DB) *QuestionPersistence {
 	return &QuestionPersistence{

@@ -20,4 +20,6 @@ func NewQuestionHandler(s *storage.PostgresRepository, r *mux.Router) {
 	r.HandleFunc("/question", q.GetAll).Methods(http.MethodGet)
 
 	r.HandleFunc("/question", q.Save).Methods(http.MethodPost)
+
+	r.HandleFunc("/question", q.Update).Methods(http.MethodPut)
 }
