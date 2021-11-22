@@ -11,6 +11,6 @@ type QuestionRepository interface {
 	Get(string) (*Question, error)
 	GetAll() ([]Question, error)
 	Save(Question) error
-	Update(content, Id string) error
+	Update(Question) error
 	Delete(string) error
 }

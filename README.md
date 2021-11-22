@@ -24,15 +24,16 @@ REST Service for questions and answers
 cp .config-example .config
 ```
 
-2. Fill out the variables with your own credentials, these are the default values:
+2. Fill out the variables with your own credentials, If you want to start quickly, 
+these are the default values (do not modify):
 ```
 API_PORT=8087
 
-POSTGRES_DB=mydb
-POSTGRES_USER=user
+POSTGRES_DB=qas_db
+POSTGRES_USER=qas
 POSTGRES_PASSWORD=secret
 POSTGRES_DRIVER=postgres
-POSTGRES_HOST=127.0.0.1
+POSTGRES_HOST=qas_pgsql
 ```
 
 # 3. Run the service

@@ -17,7 +17,7 @@ func (qp *QuestionPersistence) Get(id string) (*domain.Question, error) {
 	var (
 		q   domain.Question
 		err = qp.db.
-			QueryRow(fmt.Sprintf("SELECT (id, content) FROM %s WHERE id=$1", qp.tableName), id).
+			QueryRow(fmt.Sprintf("SELECT id, content FROM %s WHERE id=$1", qp.tableName), id).
 			Scan(&q.Id, &q.Content)
 	)
 	if err != nil {
@@ -31,7 +31,7 @@ func (qp *QuestionPersistence) GetAll() ([]domain.Question, error) {
 	var (
 		q         domain.Question
 		questions []domain.Question
-		rows, err = qp.db.Query(fmt.Sprintf("SELECT (id, content) FROM %s", qp.tableName))
+		rows, err = qp.db.Query(fmt.Sprintf("SELECT id, content FROM %s", qp.tableName))
 	)
 	if err != nil {
 		log.Print(err)
@@ -49,6 +49,23 @@ func (qp *QuestionPersistence) GetAll() ([]domain.Question, error) {
 }
 
 func (qp *QuestionPersistence) GetByUser(userId string) ([]domain.Question, error) {
+	var (
+		q         domain.Question
+		questions []domain.Question
+		rows, err = qp.db.Query(fmt.Sprintf("SELECT id, content FROM %s WHERE user_id=$1", qp.tableName), userId)
+	)
+	if err != nil {
+		log.Print(err)
+		return nil, err
+	}
+	for rows.Next() {
+		err = rows.Scan(&q.Id, &q.Content)
+		if err != nil {
+			log.Print(err)
+			return nil, err
+		}
+		questions = append(questions, q)
+	}
 	return nil, nil
 }
 
