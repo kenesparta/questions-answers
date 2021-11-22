@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "7c73bfbd-a9bb-48c0-a9d5-0a455d9b77ea",
+		"name": "Question-Answer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Question",
+			"item": [
+				{
+					"name": "List of Questions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/question",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"question"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Question by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/question?id=7d292ede-81bc-4880-85f6-f5e53c778afe",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"question"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "7d292ede-81bc-4880-85f6-f5e53c778afe",
+									"description": "From list of question"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Question by User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/question?userId=3df7893a-2253-40f9-8dde-c00fb9713ff0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"question"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "3df7893a-2253-40f9-8dde-c00fb9713ff0",
+									"description": "From list of question"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Question",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":\"3df7893a-2253-40f9-8dde-c00fb9713ff0\",\n    \"content\":\"My question?\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/question",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"question"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Question",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"f02e7c34-a60e-4b2a-93ce-7c7f11e0afb1\",\n    \"content\":\"What is my age?\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/question",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"question"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a question",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/question?id=7d292ede-81bc-4880-85f6-f5e53c778afe",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"question"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "7d292ede-81bc-4880-85f6-f5e53c778afe",
+									"description": "From list of question"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Answer",
+			"item": []
+		}
+	]
+}

@@ -1,0 +1,14 @@
+{
+	"id": "2d3d15cf-a1c6-4f6a-a521-acf001cd04ce",
+	"name": "Local",
+	"values": [
+		{
+			"key": "URL",
+			"value": "http://127.0.0.1:8087",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2021-11-22T22:17:36.697Z",
+	"_postman_exported_using": "Postman/9.1.5"
+}

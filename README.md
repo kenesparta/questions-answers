@@ -63,3 +63,6 @@ curl http://127.0.0.1:8087/question
 ```
 
 # 4. Testing using postman
+
+- You can import the **collection** file at `./postman/collection.json`
+- You can import the **environment** file at `./postman/environment.json`
