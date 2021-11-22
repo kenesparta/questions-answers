@@ -6,6 +6,12 @@ REST Service for questions and answers
 
 ![model](model.svg)
 
+## Directory tree
+
+- `pkg`: Here is the main source code.
+- `sql`: Here are all the SQL files to create the tables, data insertions and methods (it is not necessary run these files manually).
+- `postman`: Here is the Postman `json` file to import to your local JSON.
+
 # 1. Requirements
 
 | Software         | Version | Importance                   |
@@ -21,7 +27,7 @@ REST Service for questions and answers
 1. Copy the `.env-example` file to `.env` file:
 
 ```shell
-cp .config-example .config
+cp .env-example .env
 ```
 
 2. Fill out the variables with your own credentials, If you want to start quickly, 
@@ -37,14 +43,23 @@ POSTGRES_HOST=qas_pgsql
 ```
 
 # 3. Run the service
-1. Please look at the `docker-compose.yml`
-
-2. Execute the command `make l/up`, if you are on Windows execute:
+1. Execute the command `make l/up`, if you are on _Windows_ execute:
 ```shell
 docker-compose down --remove-orphans --rmi all
 ```
+and
 ```shell
 docker-compose --env-file ./.env up --detach --remove-orphans --force-recreate --build
 ```
 
-3. Execute the **sql scripts** on the `./sql` directory by these commands:
+> 
+> The queries at `.sql/` directory run with the `docker-composer` command (lines 21, 22), 
+> so it **is not necessary** run separately.
+> 
+
+2. Finally, you can run the command, the output should be an array with all the questions.
+```shell
+curl http://127.0.0.1:8087/question
+```
+
+# 4. Testing using postman

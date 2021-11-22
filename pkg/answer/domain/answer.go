@@ -8,5 +8,5 @@ type Answer struct {
 }
 
 type AnswerRepository interface {
-	Save(id, questionId string)
+	Save(Answer)
 }

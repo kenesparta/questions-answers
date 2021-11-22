@@ -2,6 +2,7 @@ package route
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
 	"github.com/kenesparta/questions-answers/question/domain"
@@ -33,6 +34,12 @@ func (q *Question) Get(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+
+	if question == nil {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
 	w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(&question); err != nil {
 		log.Print(err)
@@ -48,6 +55,12 @@ func (q *Question) GetAll(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+
+	if questions == nil {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
 	w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(&questions); err != nil {
 		log.Print(err)
@@ -56,3 +69,34 @@ func (q *Question) GetAll(w http.ResponseWriter, _ *http.Request) {
 	}
 }
 
+func (q *Question) GetByUser(w http.ResponseWriter, r *http.Request) {
+	infra.Headers(w)
+	userId := mux.Vars(r)["userId"]
+	fmt.Println(userId)
+	if _, err := uuid.Parse(userId); err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	questions, err := q.app.GetByUser(userId)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	if questions == nil {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(&questions); err != nil {
+		log.Print(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+}
+
+func (q *Question) Save(w http.ResponseWriter, r *http.Request) {
+
+}

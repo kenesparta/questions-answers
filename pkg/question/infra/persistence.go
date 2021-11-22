@@ -52,21 +52,24 @@ func (qp *QuestionPersistence) GetByUser(userId string) ([]domain.Question, erro
 	var (
 		q         domain.Question
 		questions []domain.Question
-		rows, err = qp.db.Query(fmt.Sprintf("SELECT id, content FROM %s WHERE user_id=$1", qp.tableName), userId)
+		rows, err = qp.db.Query(
+			fmt.Sprintf("SELECT * FROM %s WHERE user_id=$1", qp.tableName),
+			userId,
+		)
 	)
 	if err != nil {
 		log.Print(err)
 		return nil, err
 	}
 	for rows.Next() {
-		err = rows.Scan(&q.Id, &q.Content)
+		err = rows.Scan(&q.Id, &q.Content, &q.UserId)
 		if err != nil {
 			log.Print(err)
 			return nil, err
 		}
 		questions = append(questions, q)
 	}
-	return nil, nil
+	return questions, nil
 }
 
 func (qp *QuestionPersistence) Save(q domain.Question) error {
