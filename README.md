@@ -30,7 +30,7 @@ REST Service for questions and answers
 cp .env-example .env
 ```
 
-2. Fill out the variables with your own credentials, If you want to start quickly, 
+2. Fill out the variables with your own credentials. If you want to start quickly, 
 these are the default values (do not modify):
 ```
 API_PORT=8087
@@ -43,7 +43,7 @@ POSTGRES_HOST=qas_pgsql
 ```
 
 # 3. Run the service
-1. Execute the command `make l/up`, if you are on _Windows_ execute:
+1. Execute the command `make l/up`. Or, if you are on _Windows_ execute:
 ```shell
 docker-compose down --remove-orphans --rmi all
 ```

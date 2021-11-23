@@ -2,10 +2,11 @@ package route
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
 	"github.com/kenesparta/questions-answers/question/domain"
-	"github.com/kenesparta/questions-answers/user/infra"
+	"github.com/kenesparta/questions-answers/shared/header"
 	"log"
 	"net/http"
 )
@@ -21,7 +22,7 @@ func New(app domain.QuestionRepository) *Question {
 }
 
 func (q *Question) Get(w http.ResponseWriter, r *http.Request) {
-	infra.Headers(w)
+	header.Headers(w)
 	questionId := mux.Vars(r)["id"]
 	if _, err := uuid.Parse(questionId); err != nil {
 		log.Print(err)
@@ -53,7 +54,7 @@ func (q *Question) Get(w http.ResponseWriter, r *http.Request) {
 }
 
 func (q *Question) GetAll(w http.ResponseWriter, _ *http.Request) {
-	infra.Headers(w)
+	header.Headers(w)
 	questions, err := q.app.GetAll()
 	if err != nil {
 		log.Print(err)
@@ -77,7 +78,7 @@ func (q *Question) GetAll(w http.ResponseWriter, _ *http.Request) {
 }
 
 func (q *Question) GetByUser(w http.ResponseWriter, r *http.Request) {
-	infra.Headers(w)
+	header.Headers(w)
 	userId := mux.Vars(r)["userId"]
 	if _, err := uuid.Parse(userId); err != nil {
 		log.Print(err)
@@ -109,7 +110,7 @@ func (q *Question) GetByUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func (q *Question) Save(w http.ResponseWriter, r *http.Request) {
-	infra.Headers(w)
+	header.Headers(w)
 	var question domain.Question
 	if err := json.NewDecoder(r.Body).Decode(&question); nil != err {
 		log.Print(err)
@@ -118,18 +119,19 @@ func (q *Question) Save(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := q.app.Save(question); err != nil {
+	id, err := q.app.Save(question)
+	if err != nil {
 		log.Print(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(err.Error()))
 		return
 	}
-
 	w.WriteHeader(http.StatusCreated)
+	w.Write([]byte(fmt.Sprintf(`{"id":"%s"}`, *id)))
 }
 
 func (q *Question) Update(w http.ResponseWriter, r *http.Request) {
-	infra.Headers(w)
+	header.Headers(w)
 	var question domain.Question
 	if err := json.NewDecoder(r.Body).Decode(&question); nil != err {
 		log.Print(err)
@@ -149,7 +151,7 @@ func (q *Question) Update(w http.ResponseWriter, r *http.Request) {
 }
 
 func (q *Question) Delete(w http.ResponseWriter, r *http.Request) {
-	infra.Headers(w)
+	header.Headers(w)
 	questionId := mux.Vars(r)["id"]
 	if _, err := uuid.Parse(questionId); err != nil {
 		log.Print(err)

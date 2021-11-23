@@ -72,7 +72,7 @@ func (qp *QuestionPersistence) GetByUser(userId string) ([]domain.Question, erro
 	return questions, nil
 }
 
-func (qp *QuestionPersistence) Save(q domain.Question) error {
+func (qp *QuestionPersistence) Save(q domain.Question) (*string, error) {
 	var (
 		idCreated string
 		err       = qp.db.
@@ -85,9 +85,9 @@ func (qp *QuestionPersistence) Save(q domain.Question) error {
 	)
 	if err != nil {
 		log.Print(err)
-		return err
+		return nil, err
 	}
-	return nil
+	return &idCreated, nil
 }
 
 func (qp *QuestionPersistence) Update(q domain.Question) error {
