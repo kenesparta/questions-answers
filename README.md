@@ -17,7 +17,7 @@ REST Service for questions and answers
 | Software         | Version | Importance                   |
 | ---------------- | ------- | ---------------------------- |
 | 🐳 Docker         | 20.10.11 | Required                     |
-| 🐙 Docker Compose | 1.29.2  | Required                     |
+| 🐙 Docker Compose | 1.24.1  | Required                     |
 | 🐃 GNU Make       | 4.2.1   | Optional                     |
 | ‍🚀 Postman        | 9.1.5   | Optional                     |
 
@@ -49,12 +49,12 @@ docker-compose down --remove-orphans --rmi all
 ```
 and
 ```shell
-docker-compose --env-file ./.env up --detach --remove-orphans --force-recreate --build
+docker-compose up --detach --remove-orphans --force-recreate --build
 ```
 
 > 
 > The queries at `.sql/` directory run with the `docker-composer` command (lines 21, 22), 
-> so it **is not necessary** run separately.
+> so it **is not necessary** run separately. (make sure that the API_PORT is 8087)
 > 
 
 2. Finally, you can run the command, the output should be an array with all the questions.
