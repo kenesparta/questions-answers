@@ -13,6 +13,13 @@ type QuestionPersistence struct {
 	domain.QuestionRepository
 }
 
+func NewQuestionPersistence(tableName string, db *sql.DB) *QuestionPersistence {
+	return &QuestionPersistence{
+		tableName: tableName,
+		db:        db,
+	}
+}
+
 func (qp *QuestionPersistence) Get(id string) (*domain.Question, error) {
 	var (
 		q   domain.Question
@@ -119,11 +126,4 @@ func (qp *QuestionPersistence) Delete(id string) error {
 		return err
 	}
 	return nil
-}
-
-func NewQuestionPersistence(tableName string, db *sql.DB) *QuestionPersistence {
-	return &QuestionPersistence{
-		tableName: tableName,
-		db:        db,
-	}
 }

@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS answer
     user_id     uuid NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user_qa (id),
 
-    question_id uuid NOT NULL,
+    question_id uuid NOT NULL UNIQUE,
     FOREIGN KEY (question_id) REFERENCES question (id)
 );
 CREATE INDEX answer_user_id ON answer (user_id);

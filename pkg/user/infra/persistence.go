@@ -13,6 +13,13 @@ type UserPersistence struct {
 	domain.UserRepository
 }
 
+func NewUserPersistence(tableName string, db *sql.DB) *UserPersistence {
+	return &UserPersistence{
+		tableName: tableName,
+		db:        db,
+	}
+}
+
 func (up *UserPersistence) GetAll() ([]domain.User, error) {
 	var (
 		u         domain.User
@@ -32,11 +39,4 @@ func (up *UserPersistence) GetAll() ([]domain.User, error) {
 		users = append(users, u)
 	}
 	return users, nil
-}
-
-func NewUserPersistence(tableName string, db *sql.DB) *UserPersistence {
-	return &UserPersistence{
-		tableName: tableName,
-		db:        db,
-	}
 }

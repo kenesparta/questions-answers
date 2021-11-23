@@ -8,5 +8,6 @@ type Answer struct {
 }
 
 type AnswerRepository interface {
-	Save(Answer)
+	Save(Answer) (*string, error)
+	GetAll() ([]Answer, error)
 }
