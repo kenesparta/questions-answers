@@ -65,19 +65,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/question?id=d739db91-d3d2-4b6f-bfac-fca3e772fa53",
+							"raw": "{{URL}}/question/51c87bce-128a-4957-8857-7af28ea73b01",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"question"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "d739db91-d3d2-4b6f-bfac-fca3e772fa53",
-									"description": "From list of question"
-								}
+								"question",
+								"51c87bce-128a-4957-8857-7af28ea73b01"
 							]
 						}
 					},
@@ -165,19 +159,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/question?id=d739db91-d3d2-4b6f-bfac-fca3e772fa53",
+							"raw": "{{URL}}/question/8cd4e934-2549-403f-b0cf-ad98ac1b355b",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"question"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "d739db91-d3d2-4b6f-bfac-fca3e772fa53",
-									"description": "From list of question"
-								}
+								"question",
+								"8cd4e934-2549-403f-b0cf-ad98ac1b355b"
 							]
 						}
 					},
