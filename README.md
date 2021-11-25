@@ -17,7 +17,7 @@ REST Service for questions and answers
 | Software         | Version | Importance                   |
 | ---------------- | ------- | ---------------------------- |
 | 🐳 Docker         | 20.10.11 | Required                     |
-| 🐙 Docker Compose | 1.24.1  | Required                     |
+| 🐙 Docker Compose | 1.29.2  | Required                     |
 | 🐃 GNU Make       | 4.2.1   | Optional                     |
 | ‍🚀 Postman        | 9.1.5   | Optional                     |
 
