@@ -3,7 +3,7 @@ package route
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/kenesparta/questions-answers/answer/domain"
+	"github.com/kenesparta/questions-answers/entities/answer/domain"
 	"github.com/kenesparta/questions-answers/shared/header"
 	"log"
 	"net/http"

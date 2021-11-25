@@ -3,10 +3,10 @@ package storage
 import (
 	"database/sql"
 	"fmt"
-	pgAnswer "github.com/kenesparta/questions-answers/answer/infra"
 	"github.com/kenesparta/questions-answers/config"
-	pgQuestion "github.com/kenesparta/questions-answers/question/infra"
-	pgUser "github.com/kenesparta/questions-answers/user/infra"
+	pgAnswer "github.com/kenesparta/questions-answers/entities/answer/infra"
+	pgQuestion "github.com/kenesparta/questions-answers/entities/question/infra"
+	pgUser "github.com/kenesparta/questions-answers/entities/user/infra"
 	_ "github.com/lib/pq"
 	"log"
 )

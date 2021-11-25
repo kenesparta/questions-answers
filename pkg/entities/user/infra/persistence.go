@@ -3,7 +3,7 @@ package infra
 import (
 	"database/sql"
 	"fmt"
-	"github.com/kenesparta/questions-answers/user/domain"
+	"github.com/kenesparta/questions-answers/entities/user/domain"
 	"log"
 )
 

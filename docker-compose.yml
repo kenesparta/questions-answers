@@ -9,7 +9,7 @@ services:
     env_file: .env
     restart: "no"
     ports:
-      - "8087:8087"
+      - "${API_PORT}:${API_PORT}"
     networks:
       qas:
 

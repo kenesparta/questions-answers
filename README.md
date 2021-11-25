@@ -49,7 +49,7 @@ docker-compose down --remove-orphans --rmi all
 ```
 and
 ```shell
-docker-compose up --detach --remove-orphans --force-recreate --build
+docker-compose --env-file ./.env up --detach --remove-orphans --force-recreate --build
 ```
 
 > 

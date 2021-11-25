@@ -2,8 +2,8 @@ package route
 
 import (
 	"encoding/json"
+	"github.com/kenesparta/questions-answers/entities/user/domain"
 	"github.com/kenesparta/questions-answers/shared/header"
-	"github.com/kenesparta/questions-answers/user/domain"
 	"log"
 	"net/http"
 )

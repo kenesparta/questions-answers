@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
-	"github.com/kenesparta/questions-answers/question/domain"
+	"github.com/kenesparta/questions-answers/entities/question/domain"
 	"github.com/kenesparta/questions-answers/shared/header"
 	"log"
 	"net/http"
